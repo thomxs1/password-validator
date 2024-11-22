@@ -1,0 +1,5 @@
+com\cthiebaud\passwordvalidator\ValidationResult.class
+com\cthiebaud\passwordvalidator\PasswordValidator.class
+com\cthiebaud\PasswordValidatorTester.class
+com\thomxs1\passwordvalidator\PasswordValidation.class
+com\thomxs1\passwordvalidator\PasswordValidationMain.class

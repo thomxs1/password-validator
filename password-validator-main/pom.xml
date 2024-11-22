@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cthiebaud</groupId>
+    <artifactId>password-validator</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>password-validator-main</name>
+
+    <developers>
+        <developer>
+            <id>thomxs1</id>
+            <name>Thomas Neumann</name>
+            <email>tho.neumann.24@heilbronn.dhbw.de</email>
+            <url>https://github.com/thomxs1</url>
+        </developer>
+        <developer>
+            <id>YannickMottl</id>
+            <name>Yannick Mottl</name>
+            <email>yan.mottl.24@heilbronn.dhbw.de</email>
+            <url>https://github.com/YannickMottl</url>
+        </developer>
+        <developer>
+            <id>OliverOlah1</id>
+            <name>Oliver Donat Olah</name>
+            <email>oli.olah.24@heilbronn.dhbw.de</email>
+            <url>https://github.com/OliverOlah1</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/thomxs1/password-validator</url>
+        <connection>scm:git:https://github.com/thomxs1/password-validator.git</connection>
+        <developerConnection>scm:git:git@github.com:thomxs1/password-validator.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <repositories>
+        <repository>
+            <id>github-repo</id>
+            <url>https://maven.pkg.github.com/athenaeum-brew/maven-repo</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>github-repo</id>
+            <url>https://maven.pkg.github.com/athenaeum-brew/maven-repo</url>
+        </repository>
+    </distributionManagement>
+    
+    <properties>
+        <!-- miscellaneous -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>23</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        
+        <!-- Junit version -->
+        <junit>5.11.3</junit>
+        
+        <!-- Plugin versions -->
+        <maven.shade>3.6.0</maven.shade>
+        <maven.surefire>3.5.1</maven.surefire>
+
+        <gpg.skip>true</gpg.skip> <!-- Skipping GPG signing -->
+    </properties>
+
+    <dependencies>
+        <!-- Dependencies -->
+
+
+        <!-- Testing dependencies-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.cthiebaud.PasswordValidatorTester</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.3</version>
+                <configuration>
+                    <altDeploymentRepository>github-repo::default::https://maven.pkg.github.com/athenaeum-brew/maven-repo</altDeploymentRepository>
+                </configuration>
+            </plugin>            
+        </plugins>
+    </build>
+</project>
